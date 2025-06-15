@@ -1,0 +1,208 @@
+.navbar{
+    width:100%;
+    height: 80px;
+    overflow: auto;
+    background-color: #006eb6; /* semi-transparent background only */
+}
+
+.navbar a{
+    float:left;
+    text-align:center;
+    color:white;
+    padding:30px;
+    text-decoration:none;
+    font-size:23px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.navbar a:hover{
+    background-color:#c1d9fc;
+}
+
+.active{
+    background-color:#006eb6}
+
+@media screen and(max-width:500px){
+.navbar a{
+float:none;
+display:block;
+}
+}
+
+.text-overlay {
+    width: 40%;
+    height: 200px;
+    position: relative; /* Stacking context */
+    top: 100px;
+    left: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 70px;
+    color: #006eb6;
+    float: left;
+    font-weight:bold;
+    z-index: 2; /* Ensure it's above the semi-transparent background */
+}
+.text-overlay2{
+    width: 50%;
+    height: 200px;
+    position: relative; /* Stacking context */
+    top: 180px;
+    right: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    color: #006eb6;
+    float: left;
+    z-index: 2; /* Ensure it's above the semi-transparent background */
+}
+    .outerdiv {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        overflow: hidden;
+      }
+      
+      /* Only background transparency */
+      .outerdiv::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('kidsdebate.jpg') no-repeat center center / cover;
+        opacity: 0.4;
+        z-index: 1;
+        pointer-events:none;
+      }
+
+      * {box-sizing:border-box}
+
+      /* Slideshow container */
+      .slideshow{
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+      
+      /* Hide the images by default */
+      .slides {
+        display: none;
+      }
+      
+      /* Next & previous buttons */
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+      
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+      
+      /* Caption text */
+      .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+      }
+      
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+      
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #c1d9fc;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+      
+      .active, .dot:hover {
+        background-color: #b2cbf1;
+      }
+      
+      /* Fading animation */
+      .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+      
+      @keyframes fade {
+        from {opacity: .4}
+        to {opacity: 1}
+      }
+
+      .flip-card {
+        width: 350px;
+        height: 350px;
+        perspective: 1000px;
+        cursor: pointer;
+        position:absolute;
+        top:0%;
+        left:20%;
+
+      }
+      
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      
+      .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #c1d9fc;
+      }
+      
+      .flip-card-front {
+        background-color:#006eb6;
+        color: white;
+      }
+      
+      .flip-card-back {
+        color:#006eb6 ;
+        transform: rotateY(180deg);
+      }
