@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <style>
+      .nobackground{
+          background-image:none;
+          background-color:#ffffff;
+      }
+  </style>
+  
+  
+  <meta charset="UTF-8">
+  <title>Debate Events</title>
+  <style>
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: #fcfcfc;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .section {
+      background-color: #006eb6;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      width: 45%;
+      min-width: 350px;
+    }
+
+    .section h2 {
+      text-align: center;
+    }
+
+    .event-form {
+      background-color: #003b85;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .event-form input,
+    .event-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .event-form label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .event-form input[type="submit"] {
+      background-color: white;
+      color: #006eb6;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .event-form input[type="submit"]:hover {
+      background-color: #cce0ff;
+    }
+
+    .add-more-btn {
+      background-color: #006eb6;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .add-more-btn:hover {
+      background-color: #003b85;
+    }
+
+    .event-summary {
+      background-color: #5c9df5;
+      color: white;
+      border-radius: 15px;
+      margin-top: 20px;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .event-summary:hover {
+      background-color: #006eb6;
+    }
+
+    .event-details {
+      display: none;
+      background-color: #cce0ff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .event-details p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+      <img src="n.png" style="width:10%;float:left;" height="80px">
+      <a href="index.html">Home</a>
+      <a href="mv.html">Missions and Values</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="memebers.html">Members</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <h2 style="color:#006eb6;text-align:center;font-size:45px;">Events</h2>
+    <div class="container">
+      <!-- Past Events -->
+      <div class="section">
+        <h2>Past Events</h2>
+        <div id="past-events"></div>
+        <div class="add-more-btn" onclick="addPastEvent()">Add Another Past Event</div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="section">
+        <h2>Upcoming Events</h2>
+        <div id="upcoming-events"></div>
+        <div class="add-more-btn" onclick="addUpcomingEvent()">Add Another Upcoming Event</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pastTemplate = `
+      <div class="event-form">
+        <label>Event Name (Completed):</label>
+        <input type="text" class="event-name" placeholder="e.g. Debate Finals">
+        <label>Date:</label>
+        <input type="date" class="event-date">
+        <label>Time:</label>
+        <input type="text" class="event-time" placeholder="Start–End">
+        <label>Location:</label>
+        <input type="text" class="event-location" placeholder="Venue or Online Platform">
+        <label>Format:</label>
+        <input type="text" class="event-format" placeholder="e.g. British Parliamentary">
+        <label>Participants:</label>
+        <input type="text" class="event-participants" placeholder="e.g. House names">
+        <label>Overview:</label>
+        <textarea class="event-overview" placeholder="Summary"></textarea>
+        <label>Key Highlights:</label>
+        <textarea class="event-highlights" placeholder="Highlights"></textarea>
+        <label>Winners:</label>
+        <input type="text" class="event-winners" placeholder="Winning team">
+        <label>Judge Contributions:</label>
+        <textarea class="event-guest-contributions" placeholder="Insights"></textarea>
+        <label>Impact:</label>
+        <textarea class="event-impact" placeholder="Learnings"></textarea>
+        <label>Photos Link:</label>
+        <input type="text" class="event-photos" placeholder="URL">
+        <input type="submit" value="Submit Past Event">
+      </div>`;
+
+    const upcomingTemplate = `
+      <div class="event-form">
+        <label>Event Name (Planned):</label>
+        <input type="text" class="event-name" placeholder="e.g. Annual Debate Meet">
+        <label>Date:</label>
+        <input type="date" class="event-date">
+        <label>Time:</label>
+        <input type="text" class="event-time" placeholder="Start–End">
+        <label>Location:</label>
+        <input type="text" class="event-location" placeholder="Venue or Online">
+        <label>Format:</label>
+        <input type="text" class="event-format" placeholder="Format">
+        <label>Planned Participants:</label>
+        <input type="text" class="event-participants" placeholder="Participants">
+        <label>Description:</label>
+        <textarea class="event-overview" placeholder="Event agenda, goals, topics"></textarea>
+        <input type="submit" value="Submit Upcoming Event">
+      </div>`;
+
+    function addPastEvent() {
+      const container = document.getElementById("past-events");
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = pastTemplate;
+      const form = wrapper.firstElementChild;
+      attachPastListener(form);
+      container.appendChild(form);
+    }
+
+    function addUpcomingEvent() {
+      const container = document.getElementById("upcoming-events");
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = upcomingTemplate;
+      const form = wrapper.firstElementChild;
+      attachUpcomingListener(form);
+      container.appendChild(form);
+    }
+
+    function attachPastListener(form) {
+      const submitBtn = form.querySelector('input[type="submit"]');
+      submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const name = form.querySelector(".event-name").value;
+        const dateInput = form.querySelector(".event-date").value;
+        if (!name || !dateInput) {
+          alert("Please enter at least Event Name and Date.");
+          return;
+        }
+
+        const date = new Date(dateInput);
+        const summary = document.createElement("div");
+        summary.className = "event-summary";
+        summary.innerText = `${name} (${date.getFullYear()})`;
+
+        const details = document.createElement("div");
+        details.className = "event-details";
+        details.innerHTML = `
+          <p><strong>Date:</strong> ${date.toLocaleDateString()}</p>
+          <p><strong>Time:</strong> ${form.querySelector(".event-time").value}</p>
+          <p><strong>Location:</strong> ${form.querySelector(".event-location").value}</p>
+          <p><strong>Format:</strong> ${form.querySelector(".event-format").value}</p>
+          <p><strong>Participants:</strong> ${form.querySelector(".event-participants").value}</p>
+          <p><strong>Overview:</strong> ${form.querySelector(".event-overview").value}</p>
+          <p><strong>Highlights:</strong> ${form.querySelector(".event-highlights").value}</p>
+          <p><strong>Winners:</strong> ${form.querySelector(".event-winners").value}</p>
+          <p><strong>Judges:</strong> ${form.querySelector(".event-guest-contributions").value}</p>
+          <p><strong>Impact:</strong> ${form.querySelector(".event-impact").value}</p>
+          <p><strong>Media:</strong> <a href="${form.querySelector(".event-photos").value}" target="_blank">View</a></p>
+        `;
+
+        summary.onclick = () => {
+          details.style.display = details.style.display === "none" ? "block" : "none";
+        };
+
+        const wrapper = document.createElement("div");
+        wrapper.appendChild(summary);
+        wrapper.appendChild(details);
+
+        form.replaceWith(wrapper);
+        addPastEvent();
+      });
+    }
+
+    function attachUpcomingListener(form) {
+      const submitBtn = form.querySelector('input[type="submit"]');
+      submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const name = form.querySelector(".event-name").value;
+        const dateInput = form.querySelector(".event-date").value;
+        if (!name || !dateInput) {
+          alert("Please enter at least Event Name and Date.");
+          return;
+        }
+
+        const date = new Date(dateInput);
+        const summary = document.createElement("div");
+        summary.className = "event-summary";
+        summary.innerText = `${name} (Upcoming on ${date.toLocaleDateString()})`;
+
+        const details = document.createElement("div");
+        details.className = "event-details";
+        details.innerHTML = `
+          <p><strong>Date:</strong> ${date.toLocaleDateString()}</p>
+          <p><strong>Time:</strong> ${form.querySelector(".event-time").value}</p>
+          <p><strong>Location:</strong> ${form.querySelector(".event-location").value}</p>
+          <p><strong>Format:</strong> ${form.querySelector(".event-format").value}</p>
+          <p><strong>Participants:</strong> ${form.querySelector(".event-participants").value}</p>
+          <p><strong>Description:</strong> ${form.querySelector(".event-overview").value}</p>
+        `;
+
+        summary.onclick = () => {
+          details.style.display = details.style.display === "none" ? "block" : "none";
+        };
+
+        const wrapper = document.createElement("div");
+        wrapper.appendChild(summary);
+        wrapper.appendChild(details);
+
+        form.replaceWith(wrapper);
+        addUpcomingEvent();
+      });
+    }
+
+    // Initialize first forms on page load
+    window.onload = () => {
+      addPastEvent();
+      addUpcomingEvent();
+    };
+  </script>
+
+<footer style="background-color: #006eb6; color: white; padding: 20px; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+  <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
+  <p>
+    <a href="index.html" style="color: white; text-decoration: none; margin: 0 10px;">Home</a> |
+    <a href="mv.html" style="color: white; text-decoration: none; margin: 0 10px;">Missions and Values</a> |
+    <a href="events.html" style="color: white; text-decoration: none; margin: 0 10px;">Events</a> |
+    <a href="resources.html" style="color: white; text-decoration: none; margin: 0 10px;">Resources</a> |
+    <a href="members.html" style="color: white; text-decoration: none; margin: 0 10px;">Members</a> |
+    <a href="contact.html" style="color: white; text-decoration: none; margin: 0 10px;">Contact</a>
+  </p>
+</footer>
+</body>
+</html>
