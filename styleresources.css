@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  overflow: auto;
+  background-color: #006eb6;
+}
+
+.navbar a {
+  float: left;
+  text-align: center;
+  color: white;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar a:hover {
+  background-color: #c1d9fc;
+}
+
+.active {
+  background-color: #006eb6;
+}
+
+.logo {
+  width: 10%;
+  height: 80px;
+  float: left;
+}
+
+/* Title Styling */
+h1 {
+  text-align: center;
+  color: #006eb6;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 50px;
+  margin-top: 50px;
+  padding: 0 10px; /* Add horizontal padding for smaller screens */
+}
+
+/* Main Content Containers */
+/* This outer div acts as a flex container for the flip cards */
+.content-section {
+  width: 96%;
+  margin: 0 auto; /* Center the content */
+  background-color: #fcfcfc;
+  display: flex; /* Use flexbox */
+  flex-wrap: wrap; /* Allow cards to wrap */
+  justify-content: center; /* Center cards horizontally */
+  padding: 20px 0; /* Add vertical padding */
+}
+
+/* Flip Card Container */
+.flip-card {
+  background-color: transparent;
+  width: 450px; /* Adjust a base width */
+  height: 300px; /* Adjust a base height */
+  perspective: 1000px; /* 3D effect */
+  margin: 20px; /* Spacing between cards */
+  box-sizing: border-box;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 20px; /* Apply border-radius to the inner container */
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  display: flex; /* Use flexbox to center content vertically */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  border-radius: 20px; /* Apply border-radius */
+  box-sizing: border-box;
+  padding: 20px; /* Add padding for content */
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #fcfcfc; /* Consistent background */
+  color: #006eb6;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border:13px solid #caddfc;
+  font-size: 1.8em; /* Responsive font size */
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: #c1d9fc;
+  color: black;
+  transform: rotateY(180deg);
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.9em;
+  text-align: left; /* Align text to the left */
+  display: block; /* Change to block to allow ul to flow naturally */
+  padding-top: 20px; /* Adjust padding for lists */
+}
+
+.flip-card-back ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding: 0; /* Remove default padding */
+}
+
+.flip-card-back li {
+  line-height: 1.6; /* Adjust line height for readability */
+  margin-bottom: 5px; /* Spacing between list items */
+}
+
+.flip-card-back a {
+  color: inherit; /* Inherit color from parent */
+  text-decoration: none;
+}
+
+.flip-card-back a:hover {
+  text-decoration: underline;
+}
+
+
+/* Footer Styles */
+footer {
+  background-color: #006eb6;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px; /* Slightly less margin for links in footer */
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 768px (e.g., tablets and large phones) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navigation items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .navbar img {
+    margin-bottom: 10px;
+  }
+
+  .navbar a {
+    width: 100%; /* Make navigation links full width */
+    text-align: left; /* Align text to the left */
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 40px; /* Reduce font size for smaller screens */
+  }
+
+  .flip-card {
+    width: 90%; /* Make cards take up more width on smaller screens */
+    height: 350px; /* Adjust height for content */
+    margin: 15px auto; /* Center cards and add vertical spacing */
+  }
+
+  .flip-card-front {
+    font-size: 1.5em; /* Further reduce font size */
+  }
+
+  .flip-card-back ul {
+    margin-left: 10px; /* Adjust margin for lists */
+  }
+
+  footer a {
+    display: block; /* Stack footer links vertically */
+    margin: 5px 0;
+  }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 30px; /* Even smaller font size for very small screens */
+    margin-top: 30px;
+  }
+
+  .flip-card {
+    width: 95%; /* Almost full width */
+    height: 380px; /* Increase height slightly for more content */
+  }
+
+  .flip-card-front {
+    font-size: 1.3em;
+  }
+
+  .flip-card-back ul {
+    font-size: 0.8em; /* Smaller font size for list items */
+  }
+
+ /* Responsive styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+  }
+}
