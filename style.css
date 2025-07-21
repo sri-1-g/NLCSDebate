@@ -1,208 +1,266 @@
-.navbar{
-    width:100%;
-    height: 80px;
-    overflow: auto;
-    background-color: #006eb6; /* semi-transparent background only */
+* {
+  box-sizing: border-box;
 }
 
-.navbar a{
-    float:left;
-    text-align:center;
-    color:white;
-    padding:30px;
-    text-decoration:none;
-    font-size:23px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-.navbar a:hover{
-    background-color:#c1d9fc;
+.navbar {
+  width: 100%;
+  height: 80px;
+  overflow: auto;
+  background-color: #006eb6;
 }
 
-.active{
-    background-color:#006eb6}
-
-@media screen and(max-width:500px){
-.navbar a{
-float:none;
-display:block;
+.navbar a {
+  float: left;
+  text-align: center;
+  color: white;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.navbar a:hover {
+  background-color: #c1d9fc;
+}
+
+.active {
+  background-color: #006eb6;
+}
+
+.logo {
+  width: 10%;
+  height: 80px;
+  float: left;
+}
+
+.outerdiv {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+}
+
+.outerdiv::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('kidsdebate.jpg') no-repeat center center / cover;
+  opacity: 0.4;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.text-overlay,
+.text-overlay2 {
+  position: relative;
+  z-index: 2;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #006eb6;
 }
 
 .text-overlay {
-    width: 40%;
-    height: 200px;
-    position: relative; /* Stacking context */
-    top: 100px;
-    left: 100px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 70px;
-    color: #006eb6;
-    float: left;
-    font-weight:bold;
-    z-index: 2; /* Ensure it's above the semi-transparent background */
+  width: 40%;
+  height: 200px;
+  top: 100px;
+  left: 100px;
+  font-size: 70px;
+  font-weight: bold;
+  float: left;
 }
-.text-overlay2{
-    width: 50%;
-    height: 200px;
-    position: relative; /* Stacking context */
-    top: 180px;
-    right: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    color: #006eb6;
-    float: left;
-    z-index: 2; /* Ensure it's above the semi-transparent background */
+
+.text-overlay2 {
+  width: 50%;
+  height: 200px;
+  top: 180px;
+  right: 50px;
+  font-size: 30px;
+  float: left;
 }
-    .outerdiv {
-        position: relative;
-        width: 100%;
-        height: 700px;
-        overflow: hidden;
-      }
-      
-      /* Only background transparency */
-      .outerdiv::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('kidsdebate.jpg') no-repeat center center / cover;
-        opacity: 0.4;
-        z-index: 1;
-        pointer-events:none;
-      }
 
-      * {box-sizing:border-box}
+.join-button a {
+  border-radius: 50px;
+  color: white;
+  padding: 20px 40px;
+  background-color: #006eb6;
+  font-size: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+}
 
-      /* Slideshow container */
-      .slideshow{
-        max-width: 1000px;
-        position: relative;
-        margin: auto;
-      }
-      
-      /* Hide the images by default */
-      .slides {
-        display: none;
-      }
-      
-      /* Next & previous buttons */
-      .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-      }
-      
-      /* Position the "next button" to the right */
-      .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      
-      /* On hover, add a black background color with a little bit see-through */
-      .prev:hover, .next:hover {
-        background-color: rgba(0,0,0,0.8);
-      }
-      
-      /* Caption text */
-      .text {
-        color: #f2f2f2;
-        font-size: 15px;
-        padding: 8px 12px;
-        position: absolute;
-        bottom: 8px;
-        width: 100%;
-        text-align: center;
-      }
-      
-      /* Number text (1/3 etc) */
-      .numbertext {
-        color: #f2f2f2;
-        font-size: 12px;
-        padding: 8px 12px;
-        position: absolute;
-        top: 0;
-      }
-      
-      /* The dots/bullets/indicators */
-      .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #c1d9fc;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-      }
-      
-      .active, .dot:hover {
-        background-color: #b2cbf1;
-      }
-      
-      /* Fading animation */
-      .fade {
-        animation-name: fade;
-        animation-duration: 1.5s;
-      }
-      
-      @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-      }
+.divider-img {
+  width: 100%;
+  height: 400px;
+}
 
-      .flip-card {
-        width: 350px;
-        height: 350px;
-        perspective: 1000px;
-        cursor: pointer;
-        position:absolute;
-        top:0%;
-        left:20%;
+.skill-sections {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-      }
-      
-      .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-      }
-      
-      .flip-card.flipped .flip-card-inner {
-        transform: rotateY(180deg);
-      }
-      
-      .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        font-weight: bold;
-        background-color: #c1d9fc;
-      }
-      
-      .flip-card-front {
-        background-color:#006eb6;
-        color: white;
-      }
-      
-      .flip-card-back {
-        color:#006eb6 ;
-        transform: rotateY(180deg);
-      }
+.skill {
+  background-color: #d6e5ff;
+  width: 33.3333%;
+  height: 600px;
+  float: left;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+
+.skill:nth-child(1) { color: #093f86; }
+.skill:nth-child(2) { color: #245ca6; }
+.skill:nth-child(3) { color: #507bc8; }
+
+.skill h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.slideshow {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.slides {
+  display: none;
+  background-color: #006eb6;
+  color: #ffffff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  padding: 30px;
+  text-align: center;
+  height: auto;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+  font-size: 15px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.numbertext {
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #c1d9fc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot:hover, .dot.active {
+  background-color: #b2cbf1;
+}
+
+.footer {
+  background-color: #006eb6;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+  }
+
+  .text-overlay,
+  .text-overlay2 {
+    width: 90%;
+    font-size: 8vw;
+    position: relative;
+    top: 20px;
+    left: 10px;
+    float: none;
+    height: auto;
+  }
+
+  .text-overlay2 {
+    font-size: 5vw;
+    top: 40px;
+  }
+
+  .outerdiv {
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .skill-sections {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill {
+    width: 90% !important;
+    height: auto !important;
+    float: none !important;
+    margin-bottom: 30px;
+  }
+
+  .slideshow,
+  .slides {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .flip-card {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
