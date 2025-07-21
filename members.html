@@ -3,59 +3,111 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Members of the Club</title>
+  <style>
+    .member-section {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      min-height: 650px;
+    }
 
+    .member-section > div {
+      flex: 1 1 400px;
+      box-sizing: border-box;
+    }
+
+    .member-info {
+      padding: 30px;
+      color: #006eb6;
+      font-size: 22px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .member-form {
+      background-color: #006eb6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 750px;
+      height: 600px;
+      border: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .navbar a {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .navbar img {
+        width: 50%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body style="margin:0;padding:0;">
-
   <div class="navbar">
     <img src="n.png" style="width:10%;float:left;" height="80px">
-    <a  href="index.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="mv.html">Missions and Values</a>
     <a href="events.html">Events</a>
     <a href="resources.html">Resources</a>
     <a href="members.html" class="active">Members</a>
     <a href="contact.html">Contact</a>
+  </div>
 
-</div>
-<div>
   <h1 style="text-align:center;color:#006eb6;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-size:50px;margin-top:50px;">How to Become a Member</h1>
-</div>
 
-<div style="width:100%;height:650px;">
-    <div style="width:50%;height:600px;float:left;">
-      <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;font-size: 25px;color: #006eb6;padding:30px;">Ready to <b>boost</b> your confidence, <b></b>sharpen</b> your speaking skills, and join <b>thought-provoking</b> discussions?
-Fill out the form to join our debate club—beginners and experienced debaters are all welcome!
-
-Once you sign up, we’ll contact you with details about meetings, training sessions, and <b>opportunities</b> to participate in debates and competitions.<br>
-
-As a member, you'll get:
-<br><br>
-Access to <b>exclusive</b> resources
-<br><br>
-Regular <b>practice</b> sessions
-<br><br>
-<b>Mentorship and personalized</b> feedback
-<br><br>
-A chance to <b>represent</b> the club in school and inter-school events
-<br><br>
-Your journey to becoming a <b>confident, persuasive speaker</b> starts here. We can't wait to hear your voice!
-</p>
+  <div class="member-section">
+    <div class="member-info">
+      <p>
+        Ready to <b>boost</b> your confidence, <b>sharpen</b> your speaking skills, and join <b>thought-provoking</b> discussions?
+        Fill out the form to join our debate club—beginners and experienced debaters are all welcome!
+        <br><br>
+        Once you sign up, we’ll contact you with details about meetings, training sessions, and <b>opportunities</b> to participate in debates and competitions.
+        <br><br>
+        As a member, you'll get:
+        <ul>
+          <li>Access to <b>exclusive</b> resources</li>
+          <li>Regular <b>practice</b> sessions</li>
+          <li><b>Mentorship and personalized</b> feedback</li>
+          <li>A chance to <b>represent</b> the club in school and inter-school events</li>
+        </ul>
+        Your journey to becoming a <b>confident, persuasive speaker</b> starts here. We can't wait to hear your voice!
+      </p>
     </div>
-    <div style="width:50%;height:600px;background-color:#006eb6;float:left;">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfnUE424raMbgQJ3g3BL6E35eR5K08Z-gqsUL9zhCVjIQWfAg/viewform?embedded=true" width="750" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <div class="member-form">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfnUE424raMbgQJ3g3BL6E35eR5K08Z-gqsUL9zhCVjIQWfAg/viewform?embedded=true" loading="lazy">Loading…</iframe>
     </div>
-</div>
-<footer style="background-color: #006eb6; color: white; padding: 20px; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-  <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
-  <p>
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 10px;">Home</a> |
-    <a href="mv.html" style="color: white; text-decoration: none; margin: 0 10px;">Missions and Values</a> |
-    <a href="events.html" style="color: white; text-decoration: none; margin: 0 10px;">Events</a> |
-    <a href="resources.html" style="color: white; text-decoration: none; margin: 0 10px;">Resources</a> |
-    <a href="members.html" style="color: white; text-decoration: none; margin: 0 10px;">Members</a> |
-    <a href="contact.html" style="color: white; text-decoration: none; margin: 0 10px;">Contact</a>
-  </p>
-</footer>
+  </div>
+
+  <footer style="background-color: #006eb6; color: white; padding: 20px; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
+    <p>
+      <a href="index.html" style="color: white; text-decoration: none; margin: 0 10px;">Home</a> |
+      <a href="mv.html" style="color: white; text-decoration: none; margin: 0 10px;">Missions and Values</a> |
+      <a href="events.html" style="color: white; text-decoration: none; margin: 0 10px;">Events</a> |
+      <a href="resources.html" style="color: white; text-decoration: none; margin: 0 10px;">Resources</a> |
+      <a href="members.html" style="color: white; text-decoration: none; margin: 0 10px;">Members</a> |
+      <a href="contact.html" style="color: white; text-decoration: none; margin: 0 10px;">Contact</a>
+    </p>
+  </footer>
 </body>
 </html>
