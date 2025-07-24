@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <style>
-      .nobackground{
-          background-image:none;
-          background-color:#ffffff;
-      }
-  </style>
-  
-  
   <meta charset="UTF-8">
-  <title>Debate Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"> <title>Debate Events</title>
   <style>
+    /* General Body Styles */
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: #fcfcfc;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+    }
+
+    /* Navbar Styles (reiterated from common style.css or defined here if specific to this page) */
+    .navbar {
+      width: 100%;
+      background-color: #f8f8f8; /* Light background for visibility */
+      overflow: hidden;
+      display: flex; /* Use flexbox for navigation items */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+      align-items: center; /* Vertically align items */
+      padding: 10px 0; /* Add some padding */
+    }
+
+    .navbar img {
+      width: 80px; /* Fixed width for the logo, adjust as needed */
+      height: 80px;
+      margin-left: 20px;
+    }
+
+    .navbar a {
+      display: block;
+      color: #006eb6; /* Link color */
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .navbar a.active {
+      background-color: #006eb6;
+      color: white;
+    }
+
     /* Page Specific Styles */
     h2 {
       color: #006eb6;
@@ -135,24 +172,54 @@
       margin: 5px 0;
     }
 
+    /* Footer Styles (reiterated from common style.css or defined here) */
+    footer {
+      background-color: #006eb6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-top: 40px; /* Add some space above the footer */
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 8px; /* Slightly less margin for links in footer */
+      transition: text-decoration 0.3s ease; /* Smooth transition */
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media Queries for Responsiveness */
+
+    /* For screens smaller than 768px (e.g., tablets and large phones) */
     @media screen and (max-width: 768px) {
       .navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-      }
-
-      .navbar a {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: flex-start; /* Align items to the start */
       }
 
       .navbar img {
-        width: 50%;
         margin-bottom: 10px;
+        width: 60px; /* Adjust logo size for tablets */
+        height: 60px;
+      }
+
+      .navbar a {
+        width: 100%; /* Make navigation links full width */
+        text-align: left; /* Align text to the left */
+        padding: 10px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add separator for stacked links */
+      }
+      .navbar a:last-child {
+        border-bottom: none; /* Remove border from the last link */
       }
 
       h2 {
@@ -175,7 +242,12 @@
         min-width: unset; /* Remove min-width when stacked */
       }
 
+      footer a {
+        display: block; /* Stack footer links vertically */
+        margin: 5px 0;
+      }
     }
+
     /* For screens smaller than 480px (e.g., mobile phones) */
     @media screen and (max-width: 480px) {
       h2 {
@@ -196,206 +268,147 @@
       .event-form textarea {
         padding: 6px; /* Slightly less padding for inputs */
       }
+
+      .navbar img {
+        width: 50px; /* Smallest logo size */
+        height: 50px;
+      }
+    }
   </style>
 </head>
 <body>
-    <div class="navbar">
-      <img src="n.png" style="width:10%;float:left;" height="80px">
-      <a href="index.html">Home</a>
-      <a href="mv.html">Missions and Values</a>
-      <a href="events.html" class="active">Events</a>
-      <a href="resources.html">Resources</a>
-      <a href="members.html">Members</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <h2 style="color:#006eb6;text-align:center;font-size:45px;">Events</h2>
-  <h5 style="color:#006eb6;text-align:center;>Explore upcoming debates, meetings, and workshops — and add your own events too. Use this page to stay involved and help shape what’s next for our club!</h5>
-    <div class="container">
-      <!-- Past Events -->
-      <div class="section">
-        <h2>Past Events</h2>
-        <div id="past-events"></div>
-        <div class="add-more-btn" onclick="addPastEvent()">Add Another Past Event</div>
-      </div>
+  <div class="navbar">
+    <img src="n.png" alt="Logo">
+    <a href="index.html">Home</a>
+    <a href="mv.html">Missions and Values</a>
+    <a href="events.html" class="active">Events</a>
+    <a href="resources.html">Resources</a>
+    <a href="members.html">Members</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-      <!-- Upcoming Events -->
-      <div class="section">
-        <h2>Upcoming Events</h2>
-        <div id="upcoming-events"></div>
-        <div class="add-more-btn" onclick="addUpcomingEvent()">Add Another Upcoming Event</div>
-      </div>
+  <h2>Events</h2>
+  <h5>
+    Explore upcoming debates, meetings, and workshops — and add your own events too. Use this page to stay involved and help shape what’s next for our club!
+  </h5>
+
+  <div class="container">
+    <div class="section">
+      <h2>Past Events</h2>
+      <div id="past-events"></div>
+      <div class="add-more-btn" onclick="addPastEvent()">Add Another Past Event</div>
+    </div>
+
+    <div class="section">
+      <h2>Upcoming Events</h2>
+      <div id="upcoming-events"></div>
+      <div class="add-more-btn" onclick="addUpcomingEvent()">Add Another Upcoming Event</div>
     </div>
   </div>
 
   <script>
-    const pastTemplate = `
-      <div class="event-form">
-        <label>Event Name (Completed):</label>
-        <input type="text" class="event-name" placeholder="e.g. Debate Finals">
-        <label>Date:</label>
-        <input type="date" class="event-date">
-        <label>Time:</label>
-        <input type="text" class="event-time" placeholder="Start–End">
-        <label>Location:</label>
-        <input type="text" class="event-location" placeholder="Venue or Online Platform">
-        <label>Format:</label>
-        <input type="text" class="event-format" placeholder="e.g. British Parliamentary">
-        <label>Participants:</label>
-        <input type="text" class="event-participants" placeholder="e.g. House names">
-        <label>Overview:</label>
-        <textarea class="event-overview" placeholder="Summary"></textarea>
-        <label>Key Highlights:</label>
-        <textarea class="event-highlights" placeholder="Highlights"></textarea>
-        <label>Winners:</label>
-        <input type="text" class="event-winners" placeholder="Winning team">
-        <label>Judge Contributions:</label>
-        <textarea class="event-guest-contributions" placeholder="Insights"></textarea>
-        <label>Impact:</label>
-        <textarea class="event-impact" placeholder="Learnings"></textarea>
-        <label>Photos Link:</label>
-        <input type="text" class="event-photos" placeholder="URL">
-        <input type="submit" value="Submit Past Event">
-      </div>`;
+    // JavaScript for adding/managing events
+    function createEventForm(type) {
+      return `
+        <div class="event-form">
+          <label for="${type}-title">Event Title:</label>
+          <input type="text" id="${type}-title" placeholder="e.g., Weekly Debate Session" required>
 
-    const upcomingTemplate = `
-      <div class="event-form">
-        <label>Event Name (Planned):</label>
-        <input type="text" class="event-name" placeholder="e.g. Annual Debate Meet">
-        <label>Date:</label>
-        <input type="date" class="event-date">
-        <label>Time:</label>
-        <input type="text" class="event-time" placeholder="Start–End">
-        <label>Location:</label>
-        <input type="text" class="event-location" placeholder="Venue or Online">
-        <label>Format:</label>
-        <input type="text" class="event-format" placeholder="Format">
-        <label>Planned Participants:</label>
-        <input type="text" class="event-participants" placeholder="Participants">
-        <label>Description:</label>
-        <textarea class="event-overview" placeholder="Event agenda, goals, topics"></textarea>
-        <input type="submit" value="Submit Upcoming Event">
-      </div>`;
+          <label for="${type}-date">Date:</label>
+          <input type="date" id="${type}-date" required>
+
+          <label for="${type}-time">Time:</label>
+          <input type="time" id="${type}-time" required>
+
+          <label for="${type}-location">Location:</label>
+          <input type="text" id="${type}-location" placeholder="e.g., School Auditorium" required>
+
+          <label for="${type}-description">Description:</label>
+          <textarea id="${type}-description" rows="3" placeholder="e.g., Discussing current events and debate strategies."></textarea>
+
+          <input type="submit" value="Add Event" onclick="submitEvent('${type}')">
+        </div>
+      `;
+    }
+
+    function submitEvent(type) {
+      const title = document.getElementById(`${type}-title`).value;
+      const date = document.getElementById(`${type}-date`).value;
+      const time = document.getElementById(`${type}-time`).value;
+      const location = document.getElementById(`${type}-location`).value;
+      const description = document.getElementById(`${type}-description`).value;
+
+      if (!title || !date || !time || !location) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const eventsContainer = document.getElementById(`${type}-events`);
+      const eventSummaryDiv = document.createElement('div');
+      eventSummaryDiv.classList.add('event-summary');
+      eventSummaryDiv.innerHTML = `
+        <h3>${title}</h3>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
+      `;
+      eventSummaryDiv.onclick = function() { toggleEventDetails(this); };
+
+      const eventDetailsDiv = document.createElement('div');
+      eventDetailsDiv.classList.add('event-details');
+      eventDetailsDiv.innerHTML = `
+        <p><strong>Location:</strong> ${location}</p>
+        <p><strong>Description:</strong> ${description || 'No description provided.'}</p>
+      `;
+
+      eventsContainer.appendChild(eventSummaryDiv);
+      eventsContainer.appendChild(eventDetailsDiv);
+
+      // Clear form fields
+      document.getElementById(`${type}-title`).value = '';
+      document.getElementById(`${type}-date`).value = '';
+      document.getElementById(`${type}-time`).value = '';
+      document.getElementById(`${type}-location`).value = '';
+      document.getElementById(`${type}-description`).value = '';
+
+      // Hide the form after submission
+      const form = eventSummaryDiv.previousElementSibling; // This assumes form is directly before summary
+      if (form && form.classList.contains('event-form')) {
+          form.remove();
+      }
+    }
 
     function addPastEvent() {
-      const container = document.getElementById("past-events");
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = pastTemplate;
-      const form = wrapper.firstElementChild;
-      attachPastListener(form);
-      container.appendChild(form);
+      const pastEventsDiv = document.getElementById('past-events');
+      const formHtml = createEventForm('past');
+      // Append the form HTML just before the 'Add Another Past Event' button
+      pastEventsDiv.insertAdjacentHTML('afterend', formHtml);
     }
 
     function addUpcomingEvent() {
-      const container = document.getElementById("upcoming-events");
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = upcomingTemplate;
-      const form = wrapper.firstElementChild;
-      attachUpcomingListener(form);
-      container.appendChild(form);
+      const upcomingEventsDiv = document.getElementById('upcoming-events');
+      const formHtml = createEventForm('upcoming');
+      // Append the form HTML just before the 'Add Another Upcoming Event' button
+      upcomingEventsDiv.insertAdjacentHTML('afterend', formHtml);
     }
 
-    function attachPastListener(form) {
-      const submitBtn = form.querySelector('input[type="submit"]');
-      submitBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const name = form.querySelector(".event-name").value;
-        const dateInput = form.querySelector(".event-date").value;
-        if (!name || !dateInput) {
-          alert("Please enter at least Event Name and Date.");
-          return;
-        }
-
-        const date = new Date(dateInput);
-        const summary = document.createElement("div");
-        summary.className = "event-summary";
-        summary.innerText = `${name} (${date.getFullYear()})`;
-
-        const details = document.createElement("div");
-        details.className = "event-details";
-        details.innerHTML = `
-          <p><strong>Date:</strong> ${date.toLocaleDateString()}</p>
-          <p><strong>Time:</strong> ${form.querySelector(".event-time").value}</p>
-          <p><strong>Location:</strong> ${form.querySelector(".event-location").value}</p>
-          <p><strong>Format:</strong> ${form.querySelector(".event-format").value}</p>
-          <p><strong>Participants:</strong> ${form.querySelector(".event-participants").value}</p>
-          <p><strong>Overview:</strong> ${form.querySelector(".event-overview").value}</p>
-          <p><strong>Highlights:</strong> ${form.querySelector(".event-highlights").value}</p>
-          <p><strong>Winners:</strong> ${form.querySelector(".event-winners").value}</p>
-          <p><strong>Judges:</strong> ${form.querySelector(".event-guest-contributions").value}</p>
-          <p><strong>Impact:</strong> ${form.querySelector(".event-impact").value}</p>
-          <p><strong>Media:</strong> <a href="${form.querySelector(".event-photos").value}" target="_blank">View</a></p>
-        `;
-
-        summary.onclick = () => {
-          details.style.display = details.style.display === "none" ? "block" : "none";
-        };
-
-        const wrapper = document.createElement("div");
-        wrapper.appendChild(summary);
-        wrapper.appendChild(details);
-
-        form.replaceWith(wrapper);
-        addPastEvent();
-      });
+    function toggleEventDetails(summaryElement) {
+      const detailsElement = summaryElement.nextElementSibling;
+      if (detailsElement && detailsElement.classList.contains('event-details')) {
+        detailsElement.style.display = detailsElement.style.display === 'block' ? 'none' : 'block';
+      }
     }
-
-    function attachUpcomingListener(form) {
-      const submitBtn = form.querySelector('input[type="submit"]');
-      submitBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const name = form.querySelector(".event-name").value;
-        const dateInput = form.querySelector(".event-date").value;
-        if (!name || !dateInput) {
-          alert("Please enter at least Event Name and Date.");
-          return;
-        }
-
-        const date = new Date(dateInput);
-        const summary = document.createElement("div");
-        summary.className = "event-summary";
-        summary.innerText = `${name} (Upcoming on ${date.toLocaleDateString()})`;
-
-        const details = document.createElement("div");
-        details.className = "event-details";
-        details.innerHTML = `
-          <p><strong>Date:</strong> ${date.toLocaleDateString()}</p>
-          <p><strong>Time:</strong> ${form.querySelector(".event-time").value}</p>
-          <p><strong>Location:</strong> ${form.querySelector(".event-location").value}</p>
-          <p><strong>Format:</strong> ${form.querySelector(".event-format").value}</p>
-          <p><strong>Participants:</strong> ${form.querySelector(".event-participants").value}</p>
-          <p><strong>Description:</strong> ${form.querySelector(".event-overview").value}</p>
-        `;
-
-        summary.onclick = () => {
-          details.style.display = details.style.display === "none" ? "block" : "none";
-        };
-
-        const wrapper = document.createElement("div");
-        wrapper.appendChild(summary);
-        wrapper.appendChild(details);
-
-        form.replaceWith(wrapper);
-        addUpcomingEvent();
-      });
-    }
-
-    // Initialize first forms on page load
-    window.onload = () => {
-      addPastEvent();
-      addUpcomingEvent();
-    };
   </script>
 
-<footer style="background-color: #006eb6; color: white; padding: 20px; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-  <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
-  <p>
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 10px;">Home</a> |
-    <a href="mv.html" style="color: white; text-decoration: none; margin: 0 10px;">Missions and Values</a> |
-    <a href="events.html" style="color: white; text-decoration: none; margin: 0 10px;">Events</a> |
-    <a href="resources.html" style="color: white; text-decoration: none; margin: 0 10px;">Resources</a> |
-    <a href="members.html" style="color: white; text-decoration: none; margin: 0 10px;">Members</a> |
-    <a href="contact.html" style="color: white; text-decoration: none; margin: 0 10px;">Contact</a>
-  </p>
-</footer>
+  <footer>
+    <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="mv.html">Missions and Values</a> |
+      <a href="events.html">Events</a> |
+      <a href="resources.html">Resources</a> |
+      <a href="members.html">Members</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
 </body>
 </html>
