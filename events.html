@@ -13,20 +13,29 @@
   <meta charset="UTF-8">
   <title>Debate Events</title>
   <style>
-    body {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      background-color: #fcfcfc;
-      margin: 0;
-      padding: 0;
+    /* Page Specific Styles */
+    h2 {
+      color: #006eb6;
+      text-align: center;
+      font-size: 45px; /* Base font size */
+      margin-top: 30px; /* Add some top margin */
+      padding: 0 10px; /* Add horizontal padding for smaller screens */
     }
 
-
+    h5 {
+      color: #006eb6;
+      text-align: center;
+      margin: 10px 20px 40px; /* Adjust margin for spacing */
+      font-size: 1.1em; /* Relative font size */
+      line-height: 1.5; /* Improve readability */
+    }
 
     .container {
       display: flex;
       justify-content: space-around;
       padding: 40px 20px;
       flex-wrap: wrap;
+      gap: 20px; /* Space between flex items */
     }
 
     .section {
@@ -34,12 +43,17 @@
       color: white;
       border-radius: 20px;
       padding: 20px;
-      width: 45%;
-      min-width: 350px;
+      width: 45%; /* Default width for two columns */
+      min-width: 300px; /* Minimum width to prevent content squishing too much */
+      box-sizing: border-box;
+      flex-grow: 1; /* Allows sections to grow and fill available space */
     }
 
     .section h2 {
       text-align: center;
+      font-size: 1.8em; /* Responsive heading size */
+      margin-top: 0; /* Reset default margin */
+      margin-bottom: 20px;
     }
 
     .event-form {
@@ -56,7 +70,8 @@
       margin: 8px 0;
       border: none;
       border-radius: 5px;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      box-sizing: border-box; /* Ensure padding is included in width */
     }
 
     .event-form label {
@@ -70,6 +85,7 @@
       color: #006eb6;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color 0.3s ease; /* Smooth transition */
     }
 
     .event-form input[type="submit"]:hover {
@@ -85,6 +101,7 @@
       margin-top: 10px;
       border-radius: 5px;
       text-align: center;
+      transition: background-color 0.3s ease; /* Smooth transition */
     }
 
     .add-more-btn:hover {
@@ -98,6 +115,7 @@
       margin-top: 20px;
       padding: 15px;
       cursor: pointer;
+      transition: background-color 0.3s ease; /* Smooth transition */
     }
 
     .event-summary:hover {
@@ -107,6 +125,7 @@
     .event-details {
       display: none;
       background-color: #cce0ff;
+      color: #333; /* Darker text for readability on light background */
       border-radius: 10px;
       padding: 15px;
       margin-top: 10px;
@@ -135,7 +154,48 @@
         width: 50%;
         margin-bottom: 10px;
       }
+
+      h2 {
+        font-size: 35px; /* Reduce font size for smaller screens */
+      }
+
+      h5 {
+        font-size: 1em; /* Adjust paragraph font size */
+      }
+
+      .container {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center stacked sections */
+        padding: 20px 10px; /* Adjust padding */
+      }
+
+      .section {
+        width: 90%; /* Make sections take up more width on smaller screens */
+        margin-bottom: 20px; /* Add space between stacked sections */
+        min-width: unset; /* Remove min-width when stacked */
+      }
+
     }
+    /* For screens smaller than 480px (e.g., mobile phones) */
+    @media screen and (max-width: 480px) {
+      h2 {
+        font-size: 28px; /* Even smaller font size for very small screens */
+        margin-top: 20px;
+      }
+
+      h5 {
+        font-size: 0.9em;
+      }
+
+      .section {
+        width: 95%; /* Almost full width for sections */
+        padding: 15px;
+      }
+
+      .event-form input,
+      .event-form textarea {
+        padding: 6px; /* Slightly less padding for inputs */
+      }
   </style>
 </head>
 <body>
