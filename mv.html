@@ -28,7 +28,255 @@
         margin-bottom: 10px;
       }
     }
-    </style>
+
+    /* General Body and Box Sizing */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: #fcfcfc; /* Explicit background for consistency */
+      box-sizing: border-box; /* Include padding and border in element's total width and height */
+    }
+
+   
+    /* Main Headings */
+    h1 {
+      text-align: center;
+      color: #006eb6;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 50px;
+      margin-top: 50px;
+      padding: 0 10px; /* Add horizontal padding for smaller screens */
+    }
+
+    /* Section for About and Image */
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      gap: 30px; /* Space between flex items */
+      margin: 0 auto; /* Center the section */
+      max-width: 1200px; /* Max width for content readability */
+    }
+
+    .section > div {
+      flex: 1 1 48%; /* Adjusted to better reflect two columns, slightly less than 50% to account for gap */
+      max-width: 600px; /* Max width for content within the div */
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #006eb6;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 30px;
+    }
+
+    .section p {
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 22px;
+      color: #006eb6;
+      padding: 20px; /* Explicit padding for content within the section divs */
+      text-align: justify; /* Justify text for better readability */
+    }
+
+    .section img {
+      width: 100%; /* Make image responsive */
+      height: auto;
+      display: block; /* Remove extra space below image */
+      max-width: 600px; /* Ensure image doesn't overflow container */
+      border-radius: 10px; /* Optional: adds a slight rounded corner */
+    }
+
+    /* Card Sections for Flip Cards */
+    .card-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch; /* Stretch items to match height if content varies */
+      padding: 20px;
+      gap: 30px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 100%; /* Flexible width */
+      max-width: 350px; /* Maximum width for individual cards as per original dimensions */
+      height: 250px; /* Fixed height to strictly maintain "shape" for flip cards */
+      perspective: 1000px;
+      margin: auto; /* Center individual cards in their flex container */
+      box-sizing: border-box;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 20px; /* As per original */
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex; /* Use flex to center content */
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px; /* As per original */
+      box-sizing: border-box;
+      padding: 20px;
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1.8em; /* Adjusted for better fit within the fixed height */
+    }
+
+    .flip-card-front {
+      background-color: #006eb6; /* Exact color from original */
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 0.9em; /* Adjusted for readability and fit */
+      text-align: center;
+      display: flex; /* Ensure content is centered */
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Specific back card colors, restored exactly from original inline styles */
+    .flip-card-back[style*="background-color: #95b8f8"] {
+      background-color: #95b8f8 !important;
+      color: black !important;
+    }
+
+    .flip-card-back[style*="background-color: #3a73bf"] {
+      background-color: #3a73bf !important;
+      color: #d6e5ff !important;
+    }
+
+    .flip-card-back[style*="background-color: #d6e5ff"] {
+      background-color: #d6e5ff !important;
+      color: black !important;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #006eb6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px; /* Restored original margin */
+      transition: text-decoration 0.3s ease;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media Queries for Responsiveness */
+
+    /* For screens smaller than 768px (e.g., tablets and large phones) */
+    @media screen and (max-width: 768px) {
+     
+
+      
+      h1 {
+        font-size: 40px; /* Reduce font size for smaller screens */
+      }
+
+      .section {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center stacked sections */
+        padding: 10px;
+      }
+
+      .section > div {
+        max-width: 90%; /* Take up more width on smaller screens */
+        text-align: center; /* Center text within the div */
+      }
+
+      .section p {
+        font-size: 18px; /* Smaller font size for body text */
+        padding: 10px;
+      }
+
+      .section img {
+        max-width: 90%; /* Make sure image is not too wide */
+      }
+
+      .card-section {
+        padding: 10px;
+      }
+
+      .flip-card {
+        height: 300px; /* Adjusted height if content is longer on mobile */
+      }
+
+      .flip-card-front {
+        font-size: 1.5em; /* Smaller front card text */
+      }
+
+      .flip-card-back {
+        font-size: 0.8em; /* Smaller back card text */
+      }
+
+      footer a {
+        display: block; /* Stack footer links vertically */
+        margin: 5px 0;
+      }
+    }
+
+    /* For screens smaller than 480px (e.g., mobile phones) */
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 30px; /* Even smaller font size for very small screens */
+        margin-top: 30px;
+      }
+
+      
+      .section p {
+        font-size: 16px;
+      }
+
+      .flip-card {
+        max-width: 95%; /* Make cards nearly full width */
+        height: 320px; /* Slightly more height for content */
+      }
+
+      .flip-card-front {
+        font-size: 1.3em;
+      }
+
+      .flip-card-back {
+        font-size: 0.75em;
+      }
+    }
+  </style>
+
+    
 </head>
 
 <body style="margin:0;padding:0;">
