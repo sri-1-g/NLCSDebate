@@ -13,6 +13,41 @@
       padding: 0;
       box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
     }
+  /* Navbar Styles (reiterated from common style.css or defined here if specific to this page) */
+    .navbar {
+      width: 100%;
+      background-color: #f8f8f8; /* Light background for visibility */
+      overflow: hidden;
+      display: flex; /* Use flexbox for navigation items */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+      align-items: center; /* Vertically align items */
+      padding: 10px 0; /* Add some padding */
+    }
+
+    .navbar img {
+      width: 80px; /* Fixed width for the logo, adjust as needed */
+      height: 80px;
+      margin-left: 20px;
+    }
+
+    .navbar a {
+      display: block;
+      color: #006eb6; /* Link color */
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .navbar a.active {
+      background-color: #006eb6;
+      color: white;
+    }
 
     @media screen and (max-width: 768px) {
       .navbar {
