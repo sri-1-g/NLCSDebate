@@ -9,6 +9,11 @@
   background-color: #006eb6;
 }
 
+ .navbar img{
+        display:block;
+        width:100%;
+      }
+
 .navbar a {
   float: left;
   text-align: center;
