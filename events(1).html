@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <title>Debate Events</title>
+  <style>
+    /* General Body Styles */
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color: #fcfcfc;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Page Specific Styles */
+    h2 {
+      color: #006eb6;
+      text-align: center;
+      font-size: 45px;
+      margin-top: 30px;
+      padding: 0 10px;
+    }
+
+    h5 {
+      color: #006eb6;
+      text-align: center;
+      margin: 10px 20px 40px;
+      font-size: 1.1em;
+      line-height: 1.5;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .section {
+      background-color: #006eb6;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      width: 45%;
+      min-width: 300px;
+      box-sizing: border-box;
+      flex-grow: 1;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 1.8em;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .event-form {
+      background-color: #003b85;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .event-form input,
+    .event-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      box-sizing: border-box;
+    }
+
+    .event-form label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .event-form .submit-btn {
+      background-color: white;
+      color: #006eb6;
+      cursor: pointer;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .event-form .submit-btn:hover {
+      background-color: #cce0ff;
+    }
+
+    .add-more-btn {
+      background-color: #006eb6;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-more-btn:hover {
+      background-color: #003b85;
+    }
+
+    .event-summary {
+      background-color: #5c9df5;
+      color: white;
+      border-radius: 15px;
+      margin-top: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .event-summary:hover {
+      background-color: #006eb6;
+    }
+
+    .event-details {
+      display: none;
+      background-color: #cce0ff;
+      color: #333;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+
+    .event-details p {
+      margin: 5px 0;
+    }
+
+summary {
+  list-style: none; 
+}
+
+summary::-webkit-details-marker {
+  display: none; /* Chrome, Safari */
+}
+
+summary::marker {
+  display: none; /* Firefox */
+}
+
+
+
+  </style>
+</head>
+<body style="margin:0;padding:0;">
+
+  <!-- Navbar exactly like members.html -->
+  <div class="navbar">
+  <!-- Logo -->
+  <img src="n.png" alt="Logo">
+
+  <!-- Hamburger button (only shows on small screens) -->
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+  <!-- Links -->
+  <div class="navbar-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="mv.html">Missions and Values</a>
+    <a href="events.html">Events</a>
+    <a href="resources.html">Resources</a>
+    <a href="members.html">Members</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+</div>
+
+
+  <h2>Events</h2>
+  <h5>
+    Explore upcoming debates, meetings, and workshops — and add your own events too. Use this page to stay involved and help shape what’s next for our club!
+  </h5>
+
+  <script id="chatbotkit-widget" src="https://static.chatbotkit.com/integrations/widget/v2.js" data-widget="cmd6noj4206243q0wnewgaq61"></script>
+
+  <div class="container">
+    <div class="section">
+      <h2>Past Events</h2>
+      <div id="past-events"></div>
+      <div class="add-more-btn" onclick="addPastEvent()">Add Another Past Event</div>
+    </div>
+
+    <div class="section">
+      <h2>Upcoming Events</h2>
+      <div id="upcoming-events"></div>
+      <div class="add-more-btn" onclick="addUpcomingEvent()">Add Another Upcoming Event</div>
+    </div>
+  </div>
+
+  <script>
+    // ======== CONFIG: replace with your deployed Apps Script URL (the "exec" URL) ========
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKgzBnSWXEb-H_qDTcGI6ltBEh8OUO4td1C6aZnd6-NQvuib5N0mzcLCgGFvhRSr79wg/exec";
+
+    // Create a small unique id for each form so we can remove that specific form after submit
+    function createUID(prefix) {
+      return `${prefix}-${Date.now()}-${Math.floor(Math.random()*1000)}`;
+    }
+
+    function createEventForm(type) {
+      const uid = createUID(type);
+      return `
+        <div class="event-form" id="${uid}">
+          <label>Event Title:</label>
+          <input type="text" name="title" placeholder="e.g., Weekly Debate Session" required>
+
+          <label>Date:</label>
+          <input type="date" name="date" required>
+
+          <label>Time:</label>
+          <input type="time" name="time" required>
+
+          <label>Location:</label>
+          <input type="text" name="location" placeholder="e.g., School Auditorium" required>
+
+          <label>Description:</label>
+          <textarea name="description" rows="3" placeholder="e.g., Discussing current events and debate strategies."></textarea>
+
+          <div style="text-align:right;margin-top:8px;">
+            <button class="submit-btn" onclick="submitEvent('${type}', '${uid}')">Add Event</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Insert form inside correct container
+    function addPastEvent() {
+      document.getElementById('past-events').insertAdjacentHTML('beforeend', createEventForm('past'));
+    }
+
+    function addUpcomingEvent() {
+      document.getElementById('upcoming-events').insertAdjacentHTML('beforeend', createEventForm('upcoming'));
+    }
+
+    // Submit using FormData (multipart) to avoid preflight in many setups.
+    async function submitEvent(type, formId) {
+      try {
+        const container = document.getElementById(formId);
+        if (!container) return alert('Form not found.');
+
+        const title = container.querySelector('[name="title"]').value.trim();
+        const date = container.querySelector('[name="date"]').value;
+        const time = container.querySelector('[name="time"]').value;
+        const location = container.querySelector('[name="location"]').value.trim();
+        const description = container.querySelector('[name="description"]').value.trim();
+
+        if (!title || !date || !time || !location) {
+          return alert('Please fill in all required fields.');
+        }
+
+        const fd = new FormData();
+        fd.append('title', title);
+        fd.append('date', date);
+        fd.append('time', time);
+        fd.append('location', location);
+        fd.append('description', description);
+        fd.append('type', type);
+
+        // No Content-Type header here (browser sets multipart/form-data) -> often avoids preflight
+        const res = await fetch(SCRIPT_URL, { method: 'POST', body: fd });
+        const json = await res.json();
+
+        if (json.result && json.result === 'success') {
+          // remove only the submitted form
+          container.remove();
+          // re-load events immediately so new event shows in correct section
+          await loadEvents();
+        } else {
+          console.error('Server response:', json);
+          alert('Failed to save event. See console for details.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error saving event. Open console for details.');
+      }
+    }
+
+    // Toggle details visibility
+    function toggleEventDetails(summaryEl) {
+      const details = summaryEl.nextElementSibling;
+      if (!details || !details.classList.contains('event-details')) return;
+      details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Remove previously rendered event items only (not forms)
+    function clearRenderedEventItems(container) {
+      container.querySelectorAll('.event-summary, .event-details').forEach(el => el.remove());
+    }
+
+    // Parse various date formats robustly into a local date (no time-of-day)
+    function parseToLocalDate(dateStr) {
+      if (!dateStr) return null;
+
+      // If `yyyy-mm-dd`, easy
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+        const [y,m,d] = dateStr.split('-').map(s=>parseInt(s,10));
+        return new Date(y, m-1, d);
+      }
+
+      // Try ISO full
+      const iso = new Date(dateStr);
+      if (!isNaN(iso.getTime())) {
+        return new Date(iso.getFullYear(), iso.getMonth(), iso.getDate());
+      }
+
+      // Try dd/mm/yyyy or mm/dd/yyyy heuristics
+      const parts = dateStr.split(/[\/\.]/);
+      if (parts.length === 3) {
+        // if last part is 4-digit -> assume dd/mm/yyyy
+        if (parts[2].length === 4) {
+          const d = parseInt(parts[0],10), m = parseInt(parts[1],10), y = parseInt(parts[2],10);
+          return new Date(y, m-1, d);
+        } else if (parts[0].length === 4) {
+          // maybe yyyy/mm/dd
+          const y = parseInt(parts[0],10), m = parseInt(parts[1],10), d = parseInt(parts[2],10);
+          return new Date(y, m-1, d);
+        }
+      }
+
+      // As last resort
+      return null;
+    }
+
+    // Load events from the sheet and render into appropriate boxes
+    async function loadEvents() {
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const events = await res.json();
+
+        const pastDiv = document.getElementById('past-events');
+        const upcomingDiv = document.getElementById('upcoming-events');
+
+        // keep any currently-open forms, but clear previously-rendered items
+        clearRenderedEventItems(pastDiv);
+        clearRenderedEventItems(upcomingDiv);
+
+        // today at local midnight
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        events.forEach(ev => {
+          // Parse date robustly
+          const evDateObj = parseToLocalDate(ev.date);
+          // If parse fails, treat as upcoming to avoid losing events
+          const isPast = evDateObj ? (evDateObj < today) : false;
+
+          // Build node pair: summary + hidden details
+          const summary = document.createElement('div');
+          summary.classList.add('event-summary');
+          summary.innerHTML = `<h3>${ev.title}</h3>
+            <p><strong>Date:</strong> ${ev.date}</p>
+            <p><strong>Time:</strong> ${ev.time}</p>`;
+          summary.onclick = () => toggleEventDetails(summary);
+
+          const details = document.createElement('div');
+          details.classList.add('event-details');
+          details.innerHTML = `<p><strong>Location:</strong> ${ev.location || 'N/A'}</p>
+                               <p><strong>Description:</strong> ${ev.description || 'No description provided.'}</p>`;
+
+          if (isPast) {
+            pastDiv.appendChild(summary);
+            pastDiv.appendChild(details);
+          } else {
+            upcomingDiv.appendChild(summary);
+            upcomingDiv.appendChild(details);
+          }
+        });
+      } catch (err) {
+        console.error('Error loading events:', err);
+      }
+    }
+
+    // Load on open
+    window.addEventListener('load', loadEvents);
+  </script>
+
+  <!-- Footer exactly like members.html -->
+  <footer style="background-color: #006eb6; color: white; padding: 20px; text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <p>&copy; 2025 NLCS Dubai Debate Club. All rights reserved.</p>
+    <p>
+      <a href="index.html" style="color: white; text-decoration: none; margin: 0 10px;">Home</a> |
+      <a href="mv.html" style="color: white; text-decoration: none; margin: 0 10px;">Missions and Values</a> |
+      <a href="events.html" style="color: white; text-decoration: none; margin: 0 10px;">Events</a> |
+      <a href="resources.html" style="color: white; text-decoration: none; margin: 0 10px;">Resources</a> |
+      <a href="members.html" style="color: white; text-decoration: none; margin: 0 10px;">Members</a> |
+      <a href="contact.html" style="color: white; text-decoration: none; margin: 0 10px;">Contact</a>
+    </p>
+  </footer>
+
+  <!-- Script for toggle -->
+<script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+</script>
+</body>
+</html>
