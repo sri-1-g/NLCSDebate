@@ -221,6 +221,19 @@
         transform: rotateY(180deg);
       }
 
+.flip-card-back-resources {
+  display: block;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow-y: auto; /*  enable scroll */
+  overflow-x: hidden;
+}
+
+.flip-card-back-resources::-webkit-scrollbar {
+  width: 6px; /* Optional: slim scrollbar */
+}
+
+
 .navbar {
   width: 100%;
   height: 80px;
