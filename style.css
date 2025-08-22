@@ -173,7 +173,7 @@
 /* keep cards in normal flow and center them */
 .flip-card {
   width: 100%;
-  max-width: 500px;
+  max-width: 350px;
   height: 400px;
   perspective: 1000px;
   cursor: pointer;
