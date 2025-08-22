@@ -584,7 +584,51 @@ Margin-top:30px;
   .slides p { font-size: 18px; }
   .text { font-size: 16px; }
 }
+/* Fix navbar overlap */
+body {
+  padding-top: 60px; /* adjust based on your navbar height */
+}
+/* rows that hold the cards */
+.flip-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin: 24px 0;
+}
 
+/* each column that holds one flip-card */
+.flip-col {
+  flex: 1 1 320px; /* base size */
+  max-width: 360px; /* don’t grow too wide */
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* let card fill height */
+}
+
+/* tablet: show 2 per row comfortably */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .flip-col {
+    flex-basis: calc(50% - 24px);
+    max-width: none;
+  }
+}
+
+/* desktop: up to 3 per row */
+@media (min-width: 1024px) {
+  .flip-col {
+    flex-basis: calc(33.333% - 24px);
+    max-width: none;
+  }
+}
+
+/* mobile: single column (you already had this behavior) */
+@media (max-width: 767px) {
+  .flip-col {
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
 
 
 
