@@ -174,7 +174,7 @@
 .flip-card {
   width: 100%;
   max-width: 350px;
-  height: 400px;
+  height: 350px;
   perspective: 1000px;
   cursor: pointer;
   position: relative; /* was absolute */
