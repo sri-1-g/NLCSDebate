@@ -405,6 +405,13 @@ footer{margin-top:200px;margin-bottom:0px;}
   function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("show");
   }
+
+  // Add one default form in each section when the page loads
+window.addEventListener("load", () => {
+  addPastEvent();
+  addUpcomingEvent();
+});
+
 </script>
 </body>
 </html>
