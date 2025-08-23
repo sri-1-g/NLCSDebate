@@ -40,11 +40,12 @@
     z-index: 2; /* Ensure it's above the semi-transparent background */
 }
 .text-overlay2{
-    width: 60%;
+    width: 50%;
     height: 200px;
     position: relative; /* Stacking context */
     top: 180px;
     right: 50px;
+	left:20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
     color: #006eb6;
