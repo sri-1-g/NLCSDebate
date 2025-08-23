@@ -44,7 +44,7 @@
     height: 200px;
     position: relative; /* Stacking context */
     top: 180px;
-    right: 50px;
+    right: 30px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
     color: #006eb6;
